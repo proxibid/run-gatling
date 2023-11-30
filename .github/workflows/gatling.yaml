@@ -19,13 +19,15 @@ jobs:
   load_tests:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: Execute Gatling Test Suite      
         uses: actions/setup-java@v3
         with:
           distribution: ${{ inputs.javaDistribution }}
           java-version: ${{ inputs.javaVersion }}
 
-      - run: cd ../ && ls -la && pwd && chmod +x ./gradlew && ./gradlew gatlingRun-${{inputs.simulationClass}}
+      - run: ls -la && pwd && chmod +x ./gradlew && ./gradlew gatlingRun-${{inputs.simulationClass}}
         shell: bash
     
       - name: Generate Job Summary 
