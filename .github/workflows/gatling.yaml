@@ -6,12 +6,10 @@ on:
       javaVersion:
         description: "Java version to use"
         default: "8"
-        required: true
         type: string
       javaDistribution:
         description: "Java distribution to use"
         default: "microsoft"
-        required: true
         type: string
       simulationClass:
         description: "The fully qualified name of the simulation to run (e.g. com.proxibid.MySimulation)"
