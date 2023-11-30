@@ -5,7 +5,7 @@ on:
     inputs:
       javaVersion:
         description: "Java version to use"
-        default: "8"
+        default: "11.0.19"
         type: string
       javaDistribution:
         description: "Java distribution to use"
