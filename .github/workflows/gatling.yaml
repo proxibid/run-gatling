@@ -27,7 +27,7 @@ jobs:
           distribution: ${{ inputs.javaDistribution }}
           java-version: ${{ inputs.javaVersion }}
 
-      - run: ./gradlew gatlingRun-${{input.simulationClass}}
+      - run: ./gradlew gatlingRun-${{inputs.simulationClass}}
         shell: bash
     
       - name: Generate Job Summary 
