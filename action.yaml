@@ -3,19 +3,15 @@ description: Runs a Gatling test suite
 inputs:
   javaVersion:
     description: "Java version to use"
-    default: "17"
+    default: "8"
     required: true
   javaDistribution:
     description: "Java distribution to use"
     default: "microsoft"
     required: true
-  pomPath:
-    description: "Path to the Gatling Test Suite's pom.xml file"
-    default: "test"
-    required: true
   simulationClass:
-    description: "Full classpath of the simulation to run"
-    required: false
+    description: "The fully qualified name of the simulation to run (e.g. com.proxibid.MySimulation)"
+    required: true
 runs:
   using: "composite"
   steps:
@@ -25,7 +21,7 @@ runs:
         distribution: ${{ inputs.javaDistribution }}
         java-version: ${{ inputs.javaVersion }}
 
-    - run: mvn -f $GITHUB_WORKSPACE/${{ inputs.pomPath }} gatling:test ${{ inputs.simulationClass != '' && '-Dgatling.simulationClass=' || '' }}${{ inputs.simulationClass }}
+    - run: ./gradlew gatlingRun-${{input.simulationClass}}
       shell: bash
   
     - name: Generate Job Summary 
