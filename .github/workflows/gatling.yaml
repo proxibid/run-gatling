@@ -35,7 +35,11 @@ jobs:
         shell: bash
         env:
           BASE_URL: ${{ inputs.service_url }}
-    
+      - name: Archive test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: gatling-reports
+          path: build/reports/gatling/smoketest-*/index.html
       - name: Generate Job Summary 
         uses: actions/github-script@v6
         env:
