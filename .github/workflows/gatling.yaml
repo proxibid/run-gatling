@@ -39,6 +39,6 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: gatling-reports
-          path: build/reports/gatling/smoketest-*/index.html
+          path: build/reports/gatling/smoketest-*/**/*
           retention-days: 180
       
