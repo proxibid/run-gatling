@@ -40,5 +40,4 @@ jobs:
         with:
           name: gatling-reports
           path: build/reports/gatling/smoketest-*/**/*
-          retention-days: 180
       
