@@ -19,6 +19,11 @@ on:
         description: "The http service to run against"
         required: true
         type: string
+      output-folder-name:
+        description: "the name of the folder containing the output"
+        required: true
+        default: "some-default-value"
+        type: string
 jobs:
   load_tests:
     runs-on: stage-arc-runner-set
@@ -30,7 +35,8 @@ jobs:
         with:
           distribution: ${{ inputs.javaDistribution }}
           java-version: ${{ inputs.javaVersion }}
-
+      - run: echo "OutputFolderName = ${{ inputs.output-folder-name }}"
+        shell: bash
       - run: chmod +x ./gradlew && ./gradlew gatlingRun-${{inputs.simulationClass}}
         shell: bash
         env:
@@ -39,5 +45,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: gatling-reports
-          path: build/reports/gatling/smoketest-*/**/*
+          path: build/reports/gatling/${{ inputs.output-folder-name }}-*/**/*
       
